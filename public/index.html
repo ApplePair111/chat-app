@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chatroom</title>
+    </head>
+    <body>
+        <script>
+            let socket = new WebSocket((location.protocol === "https:" ? "wss://": "ws://") + location.host + "/ws");
+            const params = new URLSearchParams(location.search);
+            socket.onopen = () => {
+                socket.send(JSON.stringify({type: "name", name: params.get("name")}));
+            };
+            socket.onmessage = (data) => {
+                const json = JSON.parse(data.data);
+                if (json.type === "init") {
+
+                }
+                if (json.type === "error") {
+
+                }
+                if (json.type === "message") {
+                    
+                }
+            };
+        </script>
+    </body>
+</html>
