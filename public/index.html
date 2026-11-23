@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
     <head>
@@ -56,10 +55,12 @@
     </head>
     <body>
         <nav></nav>
-        <div class="chat"></div>
+        <div class="chat">
+            <div class="message my">message</div>
+            <div class="message other">message</div>
+        </div>
         <div id="send">
             <textarea></textarea>
-            <button onclick="socket.send(JSON.stringify({type: 'message', message: document.querySelector('textarea').value}))">Send</button>
         </div>
         <script>
             const body = document.body;
@@ -112,12 +113,9 @@
                         div.classList.add("other");
                     }
                     div.appendChild(document.createTextNode(json.message.message));
-                    chat.appendChild(div);
+                    chat.appendChild("div");
                 }
             };
         </script>
     </body>
 </html>
-=======
-
->>>>>>> refs/remotes/origin/main
