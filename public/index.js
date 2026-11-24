@@ -63,5 +63,5 @@ const sendButton = document.querySelector("#send button")
 const messageArea = document.querySelector("#send textarea")
 
 sendButton.addEventListener("click", () => {
-    socket.send(JSON.stringify({ type: "message", message: messageArea.value, name: params.get("name").toString(), timestamp: Date.now() }))
+    socket.send(JSON.stringify({type: "message", message: messageArea.value}))
 })
