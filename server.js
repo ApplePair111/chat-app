@@ -9,7 +9,7 @@ const {  WebSocketServer, WebSocket  } = require("ws");
 app.get("/", (req, res) => {
     if (!req.query.name) res.sendFile(path.join(ROOT, "login.html"));
     else res.sendFile(path.join(ROOT, "index.html"));
-);
+});
 
 
 app.use(express.static("public"))
