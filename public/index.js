@@ -46,6 +46,7 @@ socket.onmessage = (data) => {
 
     }
        if (json.type === "message") {
+        console.log(`New msg: ${data}`)
         const div = document.createElement("div");
         div.classList.add("message");
         if (json.message.name === params.get("name")) {
@@ -54,6 +55,13 @@ socket.onmessage = (data) => {
             div.classList.add("other");
         }
         div.appendChild(document.createTextNode(json.message.message));
-        chat.appendChild("div");
+        chat.appendChild(div);
     }
 };
+
+const sendButton = document.querySelector("#send button")
+const messageArea = document.querySelector("#send textarea")
+
+sendButton.addEventListener("click", () => {
+    socket.send(JSON.stringify({ type: "message", message: messageArea.value, name: params.get("name").toString(), timestamp: Date.now() }))
+})

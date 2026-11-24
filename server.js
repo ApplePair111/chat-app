@@ -28,6 +28,7 @@ function broadcast(data) {
 }
 websocketserver.on("connection", ws => {
     ws.on("message", (data) => {
+        console.log(`DEBUG: Got message with data: ${data.toString()}`)
         const json = JSON.parse(data.toString());
         if (json.type === "name") {
             ws.name = json.name;
