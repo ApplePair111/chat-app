@@ -11,7 +11,7 @@ socket.onopen = () => {
 
 socket.onmessage = (data) => {
     const json = JSON.parse(data.data);
-
+    let small;
     if (json.type === "init") {
         for (const message of json.messages) {
             const div = document.createElement("div");
@@ -20,9 +20,13 @@ socket.onmessage = (data) => {
                 div.classList.add("my");
             } else {
                 div.classList.add("other");
+                small = document.createElement("small");
+                small.classList.add("other");
+                small.textContent = "Sent by "+message.name;
             }
             div.appendChild(document.createTextNode(message.message));
             chat.appendChild(div);
+            if (typeof small !== "undefined") chat.appendChild(small);
         }
     }
 
