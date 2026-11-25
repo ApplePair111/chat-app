@@ -6,7 +6,7 @@
         <title>Login</title>
         <style>
             @import url("/style.css");
-            
+
             * {
                 box-sizing: border-box;
                 font-family: Arial, Helvetica, sans-serif;
@@ -25,8 +25,19 @@
     <body>
         <h1>Enter the chatroom.</h1>
         <form action="/" method="get">
-            <input type="text" name="name" placeholder="Your name: ">
+            <div style="display:flex;flex-direction:row;gap:10px;">
+<div class="uiverse-pixel-input-wrapper">
+  <label class="uiverse-pixel-label">USERNAME</label>
+  <input
+    placeholder="Enter name..."
+    class="uiverse-pixel-input"
+    name="name"
+    type="text"
+  />
+</div>
+
             <button type="submit">Enter</button>
+            </div>
         </form>
     </body>
 </html>
