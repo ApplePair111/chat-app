@@ -16,6 +16,7 @@ if (urlName) {
     location.href = "/login.html";
 }
 
+
 let name = localStorage.getItem("name");
 
 document.getElementById("usernamebox").textContent = `Logged in as: ${name}`;
@@ -25,24 +26,35 @@ socket.onopen = () => {
     socket.send(JSON.stringify({type: "name", name: name}));
 };
 
+function createMessage(msgobj) {
+    const date = new Date(msgobj.timestamp)
+
+    const div = document.createElement("div");
+
+    div.classList.add("message");
+
+    if (msgobj.name === name) {
+        div.classList.add("my");
+    } else {
+        div.classList.add("other");
+    }
+    timestamp = document.createElement("span");
+    timestamp.classList.add("timestamp");
+    timestamp.textContent = msgobj.name + " " + "—" + " " + date.toLocaleTimeString("tr-TR", { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, hour: "2-digit", minute: "2-digit" }).replace(":", ".");
+
+    div.appendChild(document.createTextNode(msgobj.message));
+    
+    div.appendChild(timestamp);
+    chat.appendChild(div);
+}
+
+
 socket.onmessage = (data) => {
+    console.log(`New msg: ${data.data}`)
     const json = JSON.parse(data.data);
-    let small;
     if (json.type === "init") {
         for (const message of json.messages) {
-            const div = document.createElement("div");
-            div.classList.add("message");
-            if (message.name === name) {
-                div.classList.add("my");
-            } else {
-                div.classList.add("other");
-                small = document.createElement("small");
-                small.classList.add("other");
-                small.textContent = "Sent by "+message.name;
-            }
-            div.appendChild(document.createTextNode(message.message));
-            chat.appendChild(div);
-            if (typeof small !== "undefined") chat.appendChild(small);
+            createMessage(message)
         }
     }
 
@@ -66,16 +78,7 @@ socket.onmessage = (data) => {
 
     }
        if (json.type === "message") {
-        console.log(`New msg: ${data}`)
-        const div = document.createElement("div");
-        div.classList.add("message");
-        if (json.message.name === name) {
-            div.classList.add("my");
-        } else {
-            div.classList.add("other");
-        }
-        div.appendChild(document.createTextNode(json.message.message));
-        chat.appendChild(div);
+        createMessage(json.message)
     }
 };
 
@@ -83,6 +86,9 @@ const sendButton = document.querySelector("#send button")
 const messageArea = document.querySelector("#send textarea")
 
 sendButton.addEventListener("click", () => {
+    if (messageArea.value.startsWith("/ban")) {
+        socket.send(JSON.stringify({ type: "ban", name: messageArea.value.split(" ")[1] }))
+    }
     socket.send(JSON.stringify({type: "message", message: messageArea.value}))
 })
 

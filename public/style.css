@@ -374,26 +374,3 @@ button:active {
     0 0.2em 0 0 #00cc66,
     0 0.2em 0 0.15em #000;
 }
-
-.uiverse-pixel-input:hover {
-  animation: uiverse-glitch-input 0.3s steps(2) infinite;
-}
-
-/* Glitch animation */
-@keyframes uiverse-glitch-input {
-  0% {
-    transform: translate(0);
-  }
-  25% {
-    transform: translate(-1px, 1px);
-  }
-  50% {
-    transform: translate(1px, -1px);
-  }
-  75% {
-    transform: translate(-1px, -1px);
-  }
-  100% {
-    transform: translate(0);
-  }
-}
