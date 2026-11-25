@@ -18,6 +18,9 @@ if (urlName) {
 
 let name = localStorage.getItem("name");
 
+document.getElementById("usernamebox").textContent = `Logged in as: ${name}`;
+
+
 socket.onopen = () => {
     socket.send(JSON.stringify({type: "name", name: name}));
 };
@@ -82,3 +85,4 @@ const messageArea = document.querySelector("#send textarea")
 sendButton.addEventListener("click", () => {
     socket.send(JSON.stringify({type: "message", message: messageArea.value}))
 })
+

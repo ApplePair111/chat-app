@@ -3,14 +3,37 @@ const app = express();
 const path = require("path");
 const ROOT = path.join(__dirname, "public");
 const {  WebSocketServer, WebSocket  } = require("ws");
+const jdenticon = require("jdenticon");
+const fs = require("fs");
 
 app.use(express.static("public"))
 
 let server = app.listen(3001)
 console.log("Server listening on port 3001")
-websocketserver = new WebSocketServer({  server,path:"/ws"  });
+
+
+function generateAvatar(name) {
+    avatars.name = jdenticon.toSvg(name, 200);
+}
+
+app.get("/api/avatar/:name", (req, res) => {
+    const name = req.params.name
+    if (name && avatars.name) {
+        res.json({ avatar: avatars.name });
+    } else if (name) {
+        avatars.name = generateAvatar(name);
+        res.json({ avatar: avatars.name });
+    } else {
+        res.status(400).json({ error: "no name specified" });
+    }
+})
+
+websocketserver = new WebSocketServer({ server, path: "/ws" });
+
 messages = [];
 clients = {};
+avatars = {};
+
 function broadcast(data) {
     for (const client of Object.values(clients)) {
         if (client.readyState === WebSocket.OPEN) {

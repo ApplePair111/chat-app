@@ -51,7 +51,8 @@ textarea {
     margin-bottom: 10px;
     padding: 10px;
     width: 200px;
-    height: 50px;
+    height: fit-content;
+    min-height: 50px;
     text-align: left;
     background-color: var(--bg);
     border: 1px solid var(--border);
@@ -78,42 +79,59 @@ textarea {
 }
 
 
-.my {
+.other {
     --bg: #A8DDFD;
     --border: #97C6E3;
     margin-left: 20px;
 }
 
-.my:after {
+.other:after {
     border-top: 15px solid var(--bg);
     top: 0;
     left: -15px;
 }
 
-.my:before {
+.other:before {
     border-top: 17px solid var(--border);
     top: -1px;
     left: -17px;
 }
 
 
-.other {
+.my {
     --bg: #f8e896;
     --border: #dfd087;
     margin-left: calc(100% - 240px);
 }
 
-.other:after {
+.my:after {
     border-bottom: 15px solid var(--bg);
     bottom: 0;
     right: -15px;
 }
 
-.other:before {
+.my:before {
     border-bottom: 17px solid var(--border);
     bottom: -1px;
     right: -17px;
 }
+
+.my .timestamp {
+    position: absolute;
+    font-size: .85em;
+    font-weight: 300;
+    bottom: 5px;
+    right: 5px;
+}
+
+.other .timestamp {
+    position: absolute;
+    font-size: .85em;
+    font-weight: 300;
+    bottom: 5px;
+    left: 5px;
+}
+
 
 #send button {
   font-family: inherit;
