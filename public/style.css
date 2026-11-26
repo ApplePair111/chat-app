@@ -48,9 +48,11 @@ textarea {
 
 .message {
     position: relative;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
     padding: 10px;
-    width: 200px;
+    width: fit-content;
+    min-width: 200px;
+    max-width: 1000px;
     height: fit-content;
     min-height: 50px;
     text-align: left;
@@ -82,7 +84,7 @@ textarea {
 .other {
     --bg: #A8DDFD;
     --border: #97C6E3;
-    margin-left: 20px;
+    /*margin-left: 20px;*/
 }
 
 .other:after {
@@ -101,7 +103,7 @@ textarea {
 .my {
     --bg: #f8e896;
     --border: #dfd087;
-    margin-left: calc(100% - 240px);
+    /*margin-left: calc(100% - 240px);*/
 }
 
 .my:after {
@@ -373,4 +375,55 @@ button:active {
     0 0 0 0.45em #000,
     0 0.2em 0 0 #00cc66,
     0 0.2em 0 0.15em #000;
+}
+
+
+
+.message-row {
+    display: flex;
+    gap: 20px;           /* the tails stick out ~17px into this gap */
+    margin-bottom: 10px; /* spacing between messages lives on the row */
+    max-width: 85%;
+}
+
+.message-row.my {
+    margin-left: auto;
+    align-items: flex-end;   /* tail is at the bottom-right, avatar at the bottom */
+}
+
+.message-row.other {
+    margin-right: auto;
+    align-items: flex-start; /* tail is at the top-left, avatar at the top */
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    object-fit: cover;
+    background: #fff;
+    user-select: none;
+}
+
+
+.message-row.my .message    { border-bottom-right-radius: 4px; }
+.message-row.other .message { border-bottom-left-radius: 4px; }
+
+.message-row {
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.message-row.my {
+    gap: 20px; /* extra room because the tail points toward the avatar */
+}
+
+.message-row .message.other,
+.message-row .message.my {
+    margin: 0;
+}
+
+.message-row.other {
+    gap: 20px; /* the tail pokes ~15px into this gap, so keep it roomy */
 }
