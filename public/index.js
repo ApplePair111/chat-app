@@ -137,7 +137,8 @@ socket.onmessage = (data) => {
 };
 
 const sendButton = document.querySelector("#sendbtn")
-const messageArea = document.querySelector("#send textarea")
+const messageArea = document.querySelector("#send textarea");
+const form = document.querySelector("#send");
 
 function sendMsg(msg) {
     if (msg.startsWith("/ban")) {
@@ -149,13 +150,25 @@ function sendMsg(msg) {
 
 sendButton.addEventListener("click", () => {
     sendMsg(messageArea.value)
-})
-
-uploadButton.addEventListener("click", () => {})
+});
 
 messageArea.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && !e.shiftKey && !e.isComposing) {
     e.preventDefault();
     sendMsg(messageArea.value)
   }
+});
+
+form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const data = new FormData();
+    for (const file of form.file.files) {
+        data.append("files", file);
+    }
+    data.append("sender", urlName);
+    await fetch("/file-message", {
+        method: "POST",
+        body: data
+    });
+    console.log("done")
 });

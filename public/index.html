@@ -10,10 +10,11 @@
     <body>
         <nav><h3 id="usernamebox"></h3><div id="imgdiv"></div><button onclick="localStorage.clear(); location.reload()">Sign out</button></nav>
         <div class="chat"></div>
-        <div id="send" style="display:flex;flex-direction:row;">
-            <button id="uploadbtn" style="margin:10px"><img src="/upload.svg"><span>Upload Files</span></button>
+        <form id="send" style="display:flex;flex-direction:row;">
+            <button id="uploadbtn" style="margin:10px" onclick="document.getElementById('fileinput').click()"><img src="/upload.svg"><span>Upload Files</span></button>
+            <input type="file" hidden id="fileinput" name="file">
             <textarea></textarea>
-            <button id="sendbtn" style="margin:10px"><img src="/send.svg"><span>Send</span></button>
-        </div>
+            <button type="submit" id="sendbtn" style="margin:10px"><img src="/send.svg"><span>Send</span></button>
+        </form>
     </body>
 </html>
