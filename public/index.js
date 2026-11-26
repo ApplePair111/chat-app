@@ -136,7 +136,7 @@ socket.onmessage = (data) => {
     }
 };
 
-const sendButton = document.querySelector("#send button")
+const sendButton = document.querySelector("#sendbtn")
 const messageArea = document.querySelector("#send textarea")
 
 function sendMsg(msg) {
@@ -150,6 +150,8 @@ function sendMsg(msg) {
 sendButton.addEventListener("click", () => {
     sendMsg(messageArea.value)
 })
+
+uploadButton.addEventListener("click", () => {})
 
 messageArea.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && !e.shiftKey && !e.isComposing) {

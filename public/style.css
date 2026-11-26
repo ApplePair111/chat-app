@@ -135,54 +135,8 @@ textarea {
 }
 
 
-#send button {
-  font-family: inherit;
-  font-size: 20px;
-  background: royalblue;
-  color: white;
-  padding: 0.7em 1em;
-  padding-left: 0.9em;
-  display: flex;
-  align-items: center;
-  border: none;
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.2s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-#send button span {
-  display: block;
-  margin-left: 0.3em;
-  transition: all 0.3s ease-in-out;
-}
-
-#send button svg {
-  display: block;
-  transform-origin: center center;
-  transition: transform 0.3s ease-in-out;
-}
-
-
-#send button:hover svg {
-  transform: translateX(1.2em) rotate(45deg) scale(1.1);
-}
-
-#send button:hover span {
-  transform: translateX(5em);
-}
-
-#send button:active {
-  transform: scale(0.95);
-}
-
-
-
-
-
 #send textarea {
-  width: 100%;
+  width: 1250px;
   min-height: 48px;
   max-height: 200px;
   padding: 12px 16px;
@@ -249,6 +203,9 @@ textarea {
 
 /* From Uiverse.io by mrhyddenn */ 
 button {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
   position: relative;
   padding: 10px 20px;
   border-radius: 7px;
@@ -426,4 +383,23 @@ button:active {
 
 .message-row.other {
     gap: 20px; /* the tail pokes ~15px into this gap, so keep it roomy */
+}
+
+
+
+
+
+#send button img {
+  width: 20px;
+  height: 20px;
+}
+
+#send button {
+  align-items: center;      /* vertical */
+  justify-content: center;  /* horizontal, optional */
+}
+
+#send {
+  align-items: center;      /* vertical */
+  justify-content: center;  /* horizontal, optional */
 }
